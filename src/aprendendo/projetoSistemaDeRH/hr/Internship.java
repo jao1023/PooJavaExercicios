@@ -1,12 +1,20 @@
 package aprendendo.projetoSistemaDeRH.hr;
 
 public class Internship extends Employee{
-    public Internship(String employeeName,int employeeId, String employeeMail) {
-        super(employeeName, employeeId, employeeMail);
+    private double INTERN_SALARY = 1200;
+    private double HOURLY_LOAD = 120;
+
+    public Internship(String employeeName, String employeeMail) {
+        super(employeeName, employeeMail);
     }
 
     @Override
     public double calculateSalary() {
-        return 0;
+        return INTERN_SALARY;
+    }
+
+    @Override
+    public String getBenefits() {
+        return "";
     }
 }
