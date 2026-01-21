@@ -2,7 +2,7 @@ package aprendendo.projetoSistemaDeRH.hr;
 
 import aprendendo.projetoSistemaDeRH.hr.interfaces.Beneficial;
 
-public class Internship extends Employee implements Beneficial {
+public class Internship extends Employee {
     private static final double INTERN_SALARY = 1200;
 
     public Internship(String employeeName, String employeeMail) {
@@ -17,7 +17,7 @@ public class Internship extends Employee implements Beneficial {
 
 
     @Override
-    public String getEmplooyeBenefits() {
+    public String getEmployeeBenefits() {
         return " FREE TRANSPORT : FREE FOOD";
     }
 }

@@ -4,8 +4,11 @@ import aprendendo.projetoSistemaDeRH.hr.interfaces.Beneficial;
 import aprendendo.projetoSistemaDeRH.hr.interfaces.EnableForBonus;
 import aprendendo.projetoSistemaDeRH.hr.interfaces.EnabledForExtraHours;
 
-public class Manager extends Employee implements EnableForBonus, EnabledForExtraHours,Beneficial {
+public class Manager extends Employee implements EnableForBonus, EnabledForExtraHours {
     private static final double BASE_SALARY = 3600;
+    private static final double EXTRA_HOURS_PERCENTAGE = 1.5;
+    private static final double BONUS_PERCENTAGE = 0.1;
+
     private double bonus = 0.0;
     private double extraHours = 0.0;
 
@@ -24,13 +27,13 @@ public class Manager extends Employee implements EnableForBonus, EnabledForExtra
 
     @Override
     public double calculateExtra(double extraHours,double hourlyRate){
-        this.extraHours = extraHours * hourlyRate * 1.5;
+        this.extraHours = extraHours * hourlyRate * EXTRA_HOURS_PERCENTAGE;
         return this.extraHours ;
     };
 
     @Override
     public void calculateBonus(double valueInsales){
-        bonus = valueInsales * 0.1;
+        bonus = valueInsales * BONUS_PERCENTAGE;
     };
     @Override
     public double calculateSalary() {
@@ -38,7 +41,7 @@ public class Manager extends Employee implements EnableForBonus, EnabledForExtra
     }
 
     @Override
-    public String getEmplooyeBenefits() {
+    public String getEmployeeBenefits() {
         return " FREE TRANSPORT : FREE FOOD : EARNINGS SHARE : 13 SALARY + CLT BENEFITS";
     }
 

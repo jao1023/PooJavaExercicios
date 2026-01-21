@@ -3,7 +3,7 @@ package aprendendo.projetoSistemaDeRH.hr;
 import aprendendo.projetoSistemaDeRH.hr.interfaces.Beneficial;
 import aprendendo.projetoSistemaDeRH.hr.interfaces.EnabledForExtraHours;
 
-public class HourlyEmployee extends Employee implements Beneficial {
+public class HourlyEmployee extends Employee  {
     //Variables for calculate the salary of Hourly Employee
     private double workedHours;
     private double hourValue;
@@ -18,15 +18,11 @@ public class HourlyEmployee extends Employee implements Beneficial {
     //Method for calculate employee salary
     @Override
     public double calculateSalary() {
-        if(workedHours <= 0 ){
-            System.out.println("Employee has to be fired");
-        }
-
         return workedHours * hourValue;
     }
 
     @Override
-    public String getEmplooyeBenefits() {
+    public String getEmployeeBenefits() {
         return " FREE TRANSPORT : FREE FOOD";
     }
 

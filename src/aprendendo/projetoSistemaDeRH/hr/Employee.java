@@ -58,6 +58,6 @@ public abstract class Employee implements Beneficial {
         System.out.println("ID: " + getEmployeeId());
         System.out.println("MAIL: " + getEmployeeMail());
         System.out.println("SALARY: " + calculateSalary());
-        System.out.println("BENEFITS: " + getEmplooyeBenefits());
+        System.out.println("BENEFITS: " + getEmployeeBenefits());
     };
 }

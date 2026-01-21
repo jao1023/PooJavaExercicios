@@ -2,5 +2,5 @@ package aprendendo.projetoSistemaDeRH.hr.interfaces;
 
 public interface Beneficial {
 
-    String getEmplooyeBenefits();
+    String getEmployeeBenefits();
 }
