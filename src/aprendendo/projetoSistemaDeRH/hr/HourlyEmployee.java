@@ -1,8 +1,9 @@
 package aprendendo.projetoSistemaDeRH.hr;
 
+import aprendendo.projetoSistemaDeRH.hr.interfaces.Beneficial;
 import aprendendo.projetoSistemaDeRH.hr.interfaces.EnabledForExtraHours;
 
-public class HourlyEmployee extends Employee implements EnabledForExtraHours {
+public class HourlyEmployee extends Employee implements Beneficial {
     //Variables for calculate the salary of Hourly Employee
     private double workedHours;
     private double hourValue;
@@ -23,10 +24,11 @@ public class HourlyEmployee extends Employee implements EnabledForExtraHours {
 
         return workedHours * hourValue;
     }
+
     @Override
-    public String getBenefits(){
-        return "";
-    };
+    public String getEmplooyeBenefits() {
+        return " FREE TRANSPORT : FREE FOOD";
+    }
 
 
 }

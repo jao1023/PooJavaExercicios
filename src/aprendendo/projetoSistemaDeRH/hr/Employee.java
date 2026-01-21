@@ -1,6 +1,8 @@
 package aprendendo.projetoSistemaDeRH.hr;
 
-public abstract class Employee {
+import aprendendo.projetoSistemaDeRH.hr.interfaces.Beneficial;
+
+public abstract class Employee implements Beneficial {
 
     //Basics variables for employee.
     private String employeeName;
@@ -23,13 +25,16 @@ public abstract class Employee {
        if(employeeName.isEmpty()) {
            System.out.println("Name can't be empty");
            return;
+       }else{
+           this.employeeName = employeeName;
+           this.employeeMail = employeeMail;
        }
+
        if(employeeMail.isEmpty()) {
            System.out.println("Mail can't be empty");
            return;
        }
-       this.employeeName = employeeName;
-       this.employeeMail = employeeMail;
+
    }
    //Getters for acess the values of variables, because the variables are private.
     public String getEmployeeName() {
@@ -47,12 +52,12 @@ public abstract class Employee {
     //abstract method for calculate the salary
     public abstract double calculateSalary();
 
-    public abstract String getBenefits();
-
+    //Public method for display the employee information
     public void displayData(){
         System.out.println("NAME: " + getEmployeeName());
         System.out.println("ID: " + getEmployeeId());
-        System.out.println("MAIL " + getEmployeeMail());
-        System.out.println("SALARY " + calculateSalary());
+        System.out.println("MAIL: " + getEmployeeMail());
+        System.out.println("SALARY: " + calculateSalary());
+        System.out.println("BENEFITS: " + getEmplooyeBenefits());
     };
 }
