@@ -11,6 +11,9 @@ public class HourlyEmployee extends Employee  {
     //Constructor
     public HourlyEmployee(String employeeName, String employeeMail , double workedHours, double hourValue) {
         super(employeeName, employeeMail);
+        if(hourValue <= 7.36){
+            throw  new IllegalArgumentException("Hour value can't be less than 7.37, because the rules in Brazil is the minimum per hour in 2026 7.37");
+        }
         this.workedHours = workedHours;
         this.hourValue = hourValue;
     }

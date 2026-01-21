@@ -21,14 +21,16 @@ public abstract class Employee implements Beneficial {
 
    //Employe basic constructor.
    public Employee(String employeeName ,String employeeMail){
-       this.employeeId = idCounter;
-       if(employeeName.isEmpty()) {
-           System.out.println("Name can't be empty");
-           return;
-       }else{
+       if(employeeName == null || employeeName.isBlank()) {
+           throw new IllegalArgumentException("The name can't be null");
+       }
+       if(employeeMail == null || employeeMail.isBlank()) {
+           throw new IllegalArgumentException("The mail can't be null");
+       }
+           this.employeeId = idCounter;
            this.employeeName = employeeName;
            this.employeeMail = employeeMail;
-       }
+
 
        if(employeeMail.isEmpty()) {
            System.out.println("Mail can't be empty");
