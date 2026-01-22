@@ -1,23 +1,16 @@
 package aprendendo.projetoSistemaDeRH.hr;
 
 import aprendendo.projetoSistemaDeRH.hr.interfaces.Beneficial;
+import aprendendo.projetoSistemaDeRH.hr.interfaces.Taxable;
 
-public abstract class Employee implements Beneficial {
-
+public abstract class Employee implements Beneficial, Taxable {
     //Basics variables for employee.
     private String employeeName;
     private final int employeeId;
     private String employeeMail;
-    private static int idCounter;
+    private static int idCounter = 0;
 
     //Static initializer for idCounter
-    static {
-        idCounter = 0;
-    }
-    //Block will be executed every time we have a new object, adding one to idCounter
-    {
-        idCounter += 1;
-    }
 
    //Employe basic constructor.
    public Employee(String employeeName ,String employeeMail){
@@ -27,15 +20,9 @@ public abstract class Employee implements Beneficial {
        if(employeeMail == null || employeeMail.isBlank()) {
            throw new IllegalArgumentException("The mail can't be null");
        }
-           this.employeeId = idCounter;
+           this.employeeId = idCounter++;
            this.employeeName = employeeName;
            this.employeeMail = employeeMail;
-
-
-       if(employeeMail.isEmpty()) {
-           System.out.println("Mail can't be empty");
-           return;
-       }
 
    }
    //Getters for acess the values of variables, because the variables are private.
@@ -51,9 +38,13 @@ public abstract class Employee implements Beneficial {
         return employeeMail;
     }
 
+
     //abstract method for calculate the salary
     public abstract double calculateSalary();
 
+    public double calculateTax(){
+        return 0.0;
+    }
     //Public method for display the employee information
     public void displayData(){
         System.out.println("NAME: " + getEmployeeName());

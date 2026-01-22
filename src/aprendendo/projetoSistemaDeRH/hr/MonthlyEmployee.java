@@ -3,13 +3,16 @@ package aprendendo.projetoSistemaDeRH.hr;
 import aprendendo.projetoSistemaDeRH.hr.interfaces.Beneficial;
 import aprendendo.projetoSistemaDeRH.hr.interfaces.EnableForBonus;
 import aprendendo.projetoSistemaDeRH.hr.interfaces.EnabledForExtraHours;
+import aprendendo.projetoSistemaDeRH.hr.interfaces.Promotable;
 
-public class MonthlyEmployee extends Employee implements EnableForBonus, EnabledForExtraHours{
+public class MonthlyEmployee extends Employee implements EnableForBonus, EnabledForExtraHours, Promotable {
+    private int level = 1;
     private static final double BASE_SALARY = 1600;
     private static final double EXTRA_HOURS_PERCENTAGE = 1.2;
     private static final double BONUS_PERCENTAGE = 0.05;
     private double bonus = 0.0;
     private double extraHours = 0.0;
+
     //Getters for the private variables
     public double getBonus() {
         return bonus;
@@ -40,5 +43,15 @@ public class MonthlyEmployee extends Employee implements EnableForBonus, Enabled
     @Override
     public String getEmployeeBenefits() {
         return " FREE TRANSPORT : FREE FOOD : 13 SALARY + CLT BENEFITS";
+    }
+
+    @Override
+    public double calculateTax(){
+        return calculateSalary() * 0.11;
+    }
+
+    @Override
+    public void promote() {
+        level++;
     }
 }
