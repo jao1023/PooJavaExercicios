@@ -1,7 +1,6 @@
 package aprendendo.projetoSistemaDeRH.hr;
 
-import aprendendo.projetoSistemaDeRH.hr.interfaces.Beneficial;
-import aprendendo.projetoSistemaDeRH.hr.interfaces.EnabledForExtraHours;
+
 
 public class HourlyEmployee extends Employee  {
     //Variables for calculate the salary of Hourly Employee
@@ -13,6 +12,9 @@ public class HourlyEmployee extends Employee  {
         super(employeeName, employeeMail);
         if(hourValue <= 7.36){
             throw  new IllegalArgumentException("Hour value can't be less than 7.37, because the rules in Brazil is the minimum per hour in 2026 7.37");
+        }
+        if(workedHours <= 0){
+            throw  new IllegalArgumentException("Worked hours can't be negative or 0");
         }
         this.workedHours = workedHours;
         this.hourValue = hourValue;

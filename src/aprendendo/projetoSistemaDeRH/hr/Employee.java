@@ -8,12 +8,13 @@ public abstract class Employee implements Beneficial, Taxable {
     private String employeeName;
     private final int employeeId;
     private String employeeMail;
-    private static int idCounter = 0;
+    private static int idCounter = 1;
 
     //Static initializer for idCounter
 
    //Employe basic constructor.
    public Employee(String employeeName ,String employeeMail){
+       //Verify for name and mail, because this information can't be null, has to have a value
        if(employeeName == null || employeeName.isBlank()) {
            throw new IllegalArgumentException("The name can't be null");
        }
@@ -42,15 +43,16 @@ public abstract class Employee implements Beneficial, Taxable {
     //abstract method for calculate the salary
     public abstract double calculateSalary();
 
+   //Main method for calculate the tax of the employer
     public double calculateTax(){
         return 0.0;
     }
-    //Public method for display the employee information
-    public void displayData(){
-        System.out.println("NAME: " + getEmployeeName());
-        System.out.println("ID: " + getEmployeeId());
-        System.out.println("MAIL: " + getEmployeeMail());
-        System.out.println("SALARY: " + calculateSalary());
-        System.out.println("BENEFITS: " + getEmployeeBenefits());
+    //Public toString for see the values
+    public String toString(){
+        return "[NAME = " + getEmployeeName() + "] " +
+               "[ID = " +getEmployeeId() + "]" +
+                "[MAIL = " +getEmployeeMail() + "]" +
+        "[SALARY = " +calculateSalary() + "]";
+
     };
 }

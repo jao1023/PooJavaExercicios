@@ -1,7 +1,5 @@
 package aprendendo.projetoSistemaDeRH.hr;
 
-import aprendendo.projetoSistemaDeRH.hr.interfaces.Beneficial;
-
 public class Internship extends Employee {
     private static final double INTERN_SALARY = 1200;
 

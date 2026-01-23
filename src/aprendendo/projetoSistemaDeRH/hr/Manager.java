@@ -1,6 +1,5 @@
 package aprendendo.projetoSistemaDeRH.hr;
 
-import aprendendo.projetoSistemaDeRH.hr.interfaces.Beneficial;
 import aprendendo.projetoSistemaDeRH.hr.interfaces.EnableForBonus;
 import aprendendo.projetoSistemaDeRH.hr.interfaces.EnabledForExtraHours;
 import aprendendo.projetoSistemaDeRH.hr.interfaces.Promotable;
@@ -10,6 +9,7 @@ public class Manager extends Employee implements EnableForBonus, EnabledForExtra
     private static final double BASE_SALARY = 3600;
     private static final double EXTRA_HOURS_PERCENTAGE = 1.5;
     private static final double BONUS_PERCENTAGE = 0.1;
+    private static final double TAX_PERCENTAGE = 0.15;
 
     private double bonus = 0.0;
     private double extraHours = 0.0;
@@ -26,13 +26,13 @@ public class Manager extends Employee implements EnableForBonus, EnabledForExtra
     public Manager(String employeeName, String employeeMail) {
         super(employeeName, employeeMail);
     }
-
+    //Method for calculate the extra hours value
     @Override
     public double calculateExtra(double extraHours,double hourlyRate){
         this.extraHours = extraHours * hourlyRate * EXTRA_HOURS_PERCENTAGE;
         return this.extraHours ;
     };
-
+    //Method for calculate the bonus value
     @Override
     public void calculateBonus(double valueInsales){
         bonus = valueInsales * BONUS_PERCENTAGE;
@@ -46,10 +46,10 @@ public class Manager extends Employee implements EnableForBonus, EnabledForExtra
     public String getEmployeeBenefits() {
         return " FREE TRANSPORT : FREE FOOD : EARNINGS SHARE : 13 SALARY + CLT BENEFITS";
     }
-
+    //Override the main method in employee for the class manager, using a diferent tax
     @Override
     public double calculateTax(){
-        return calculateSalary() * 0.15;
+        return calculateSalary() * TAX_PERCENTAGE;
     }
 
     @Override
