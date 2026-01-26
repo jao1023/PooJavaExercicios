@@ -1,4 +1,11 @@
 package aprendendo.projetoSistemaDeRH.operations;
 
-public record AllocationReport() {
-}
+import aprendendo.projetoSistemaDeRH.hr.Employee;
+
+public record AllocationReport(
+        String projectName,
+        int employeeId,
+        String employeeName,
+        double salary,
+        ProjectStatus status) {}
+
