@@ -1,5 +1,6 @@
 package aprendendo.projetoSistemaDeRH.operations;
 
+import aprendendo.projetoSistemaDeRH.financial.BankAccount;
 import aprendendo.projetoSistemaDeRH.hr.Employee;
 
 public class Project implements Allocable {
@@ -8,17 +9,25 @@ public class Project implements Allocable {
     private static final int TEAM_MAX = 10;
     private Employee[] team = new Employee[10];
     private int projectMembers;
+    private boolean isPaid;
+
     private double projectValue;
     private ProjectStatus status;
     //Project constructor, the project automatic set a new project in the initial phase, and automatic set the responsible in the space zero in the array
-    public Project(String projectName, double projectValue, Employee projectResponsable) {
+    public Project(String projectName, double projectValue, Employee projectResponsable, boolean isPaid) {
         this.projectName = projectName;
         this.projectValue = projectValue;
         this.projectResponsable = projectResponsable;;
+        this.isPaid = isPaid;
         status = ProjectStatus.IN_PLANING;
-
+        if(isPaid){
+            BankAccount.deposit(projectValue,"Project Payment");
+        }
         team[0] = projectResponsable;
         projectMembers = 1;
+    }
+    public double getProjectValue() {
+        return projectValue;
     }
     //Method for go to the next status with validations, finished and canceled
     public void nextStatus(){

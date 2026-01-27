@@ -1,5 +1,6 @@
 package aprendendo.projetoSistemaDeRH.hr;
 
+import aprendendo.projetoSistemaDeRH.financial.Departament;
 import aprendendo.projetoSistemaDeRH.hr.interfaces.Beneficial;
 import aprendendo.projetoSistemaDeRH.hr.interfaces.Taxable;
 
@@ -9,6 +10,7 @@ public abstract class Employee implements Beneficial, Taxable {
     private final int employeeId;
     private String employeeMail;
     private static int idCounter = 1;
+    private Departament employeeDepartament;
 
     //Static initializer for idCounter
 

@@ -1,5 +1,6 @@
 package aprendendo.projetoSistemaDeRH.hr;
 
+import aprendendo.projetoSistemaDeRH.financial.Departament;
 import aprendendo.projetoSistemaDeRH.hr.interfaces.EnableForBonus;
 import aprendendo.projetoSistemaDeRH.hr.interfaces.EnabledForExtraHours;
 import aprendendo.projetoSistemaDeRH.hr.interfaces.Promotable;
