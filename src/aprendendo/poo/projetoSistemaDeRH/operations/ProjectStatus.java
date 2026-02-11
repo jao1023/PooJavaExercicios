@@ -1,4 +1,4 @@
-package aprendendo.projetoSistemaDeRH.operations;
+package aprendendo.poo.projetoSistemaDeRH.operations;
 
 public enum ProjectStatus {
 

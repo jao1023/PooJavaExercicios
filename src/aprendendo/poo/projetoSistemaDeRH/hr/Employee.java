@@ -1,8 +1,8 @@
-package aprendendo.projetoSistemaDeRH.hr;
+package aprendendo.poo.projetoSistemaDeRH.hr;
 
-import aprendendo.projetoSistemaDeRH.financial.Departament;
-import aprendendo.projetoSistemaDeRH.hr.interfaces.Beneficial;
-import aprendendo.projetoSistemaDeRH.hr.interfaces.Taxable;
+import aprendendo.poo.projetoSistemaDeRH.financial.Departament;
+import aprendendo.poo.projetoSistemaDeRH.hr.interfaces.Beneficial;
+import aprendendo.poo.projetoSistemaDeRH.hr.interfaces.Taxable;
 
 public abstract class Employee implements Beneficial, Taxable {
     //Basics variables for employee.

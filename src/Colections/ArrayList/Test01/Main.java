@@ -1,4 +1,4 @@
-package Colections.ArrayList;
+package Colections.ArrayList.Test01;
 
 import java.util.ArrayList;
 import java.util.Scanner;

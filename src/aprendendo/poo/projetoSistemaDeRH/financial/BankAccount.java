@@ -1,8 +1,5 @@
-package aprendendo.projetoSistemaDeRH.financial;
+package aprendendo.poo.projetoSistemaDeRH.financial;
 
-import aprendendo.projetoSistemaDeRH.hr.Employee;
-import aprendendo.projetoSistemaDeRH.hr.HourlyEmployee;
-import aprendendo.projetoSistemaDeRH.operations.Project;
 public class BankAccount {
     private static Transaction[] transactions = new Transaction[100];
     private static double balance;

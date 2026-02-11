@@ -1,9 +1,9 @@
-package aprendendo.projetoSistemaDeRH;
+package aprendendo.poo.projetoSistemaDeRH;
 
-import aprendendo.projetoSistemaDeRH.financial.BankAccount;
-import aprendendo.projetoSistemaDeRH.financial.Departament;
-import aprendendo.projetoSistemaDeRH.hr.*;
-import aprendendo.projetoSistemaDeRH.operations.Project;
+import aprendendo.poo.projetoSistemaDeRH.financial.BankAccount;
+import aprendendo.poo.projetoSistemaDeRH.financial.Departament;
+import aprendendo.poo.projetoSistemaDeRH.hr.*;
+import aprendendo.poo.projetoSistemaDeRH.operations.Project;
 
 public class Main {
     public static void main(String[] args) {

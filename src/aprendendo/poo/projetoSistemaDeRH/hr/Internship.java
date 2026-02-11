@@ -1,4 +1,4 @@
-package aprendendo.projetoSistemaDeRH.hr;
+package aprendendo.poo.projetoSistemaDeRH.hr;
 
 public class Internship extends Employee {
     private static final double INTERN_SALARY = 1200;

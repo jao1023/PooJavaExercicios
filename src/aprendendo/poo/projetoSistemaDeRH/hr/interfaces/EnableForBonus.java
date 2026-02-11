@@ -1,4 +1,4 @@
-package aprendendo.projetoSistemaDeRH.hr.interfaces;
+package aprendendo.poo.projetoSistemaDeRH.hr.interfaces;
 
 public interface EnableForBonus {
 

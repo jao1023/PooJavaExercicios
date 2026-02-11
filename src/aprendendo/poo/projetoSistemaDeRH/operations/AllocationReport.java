@@ -1,6 +1,4 @@
-package aprendendo.projetoSistemaDeRH.operations;
-
-import aprendendo.projetoSistemaDeRH.hr.Employee;
+package aprendendo.poo.projetoSistemaDeRH.operations;
 
 public record AllocationReport(
         String projectName,

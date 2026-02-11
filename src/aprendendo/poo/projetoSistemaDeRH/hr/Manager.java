@@ -1,16 +1,16 @@
-package aprendendo.projetoSistemaDeRH.hr;
+package aprendendo.poo.projetoSistemaDeRH.hr;
 
-import aprendendo.projetoSistemaDeRH.financial.Departament;
-import aprendendo.projetoSistemaDeRH.hr.interfaces.EnableForBonus;
-import aprendendo.projetoSistemaDeRH.hr.interfaces.EnabledForExtraHours;
-import aprendendo.projetoSistemaDeRH.hr.interfaces.Promotable;
+import aprendendo.poo.projetoSistemaDeRH.hr.interfaces.EnableForBonus;
+import aprendendo.poo.projetoSistemaDeRH.hr.interfaces.EnabledForExtraHours;
+import aprendendo.poo.projetoSistemaDeRH.hr.interfaces.Promotable;
 
-public class MonthlyEmployee extends Employee implements EnableForBonus, EnabledForExtraHours, Promotable {
-    private int level = 1;
-    private static final double BASE_SALARY = 1600;
-    private static final double EXTRA_HOURS_PERCENTAGE = 1.2;
-    private static final double BONUS_PERCENTAGE = 0.05;
-    private static final double TAX_PERCENTAGE = 0.11;
+public class Manager extends Employee implements EnableForBonus, EnabledForExtraHours, Promotable {
+    private int level = 2;
+    private static final double BASE_SALARY = 3600;
+    private static final double EXTRA_HOURS_PERCENTAGE = 1.5;
+    private static final double BONUS_PERCENTAGE = 0.1;
+    private static final double TAX_PERCENTAGE = 0.15;
+
     private double bonus = 0.0;
     private double extraHours = 0.0;
 
@@ -23,7 +23,7 @@ public class MonthlyEmployee extends Employee implements EnableForBonus, Enabled
         return extraHours;
     }
 
-    public MonthlyEmployee(String employeeName, String employeeMail) {
+    public Manager(String employeeName, String employeeMail) {
         super(employeeName, employeeMail);
     }
     //Method for calculate the extra hours value
@@ -39,11 +39,12 @@ public class MonthlyEmployee extends Employee implements EnableForBonus, Enabled
     };
     @Override
     public double calculateSalary() {
-        return bonus + BASE_SALARY + extraHours;
+        return bonus + BASE_SALARY + extraHours ;
     }
+
     @Override
     public String getEmployeeBenefits() {
-        return " FREE TRANSPORT : FREE FOOD : 13 SALARY + CLT BENEFITS";
+        return " FREE TRANSPORT : FREE FOOD : EARNINGS SHARE : 13 SALARY + CLT BENEFITS";
     }
     //Override the main method in employee for the class manager, using a diferent tax
     @Override
@@ -55,4 +56,5 @@ public class MonthlyEmployee extends Employee implements EnableForBonus, Enabled
     public void promote() {
         level++;
     }
+
 }

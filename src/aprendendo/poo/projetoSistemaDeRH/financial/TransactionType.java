@@ -1,4 +1,4 @@
-package aprendendo.projetoSistemaDeRH.financial;
+package aprendendo.poo.projetoSistemaDeRH.financial;
 
 public enum TransactionType {
     //Enter type

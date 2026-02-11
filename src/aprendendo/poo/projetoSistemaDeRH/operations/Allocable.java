@@ -1,6 +1,6 @@
-package aprendendo.projetoSistemaDeRH.operations;
+package aprendendo.poo.projetoSistemaDeRH.operations;
 
-import aprendendo.projetoSistemaDeRH.hr.Employee;
+import aprendendo.poo.projetoSistemaDeRH.hr.Employee;
 
 public interface Allocable {
 

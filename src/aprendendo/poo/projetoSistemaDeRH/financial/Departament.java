@@ -1,6 +1,6 @@
-package aprendendo.projetoSistemaDeRH.financial;
+package aprendendo.poo.projetoSistemaDeRH.financial;
 
-import aprendendo.projetoSistemaDeRH.hr.Employee;
+import aprendendo.poo.projetoSistemaDeRH.hr.Employee;
 
 public class Departament {
     private String departamentName;

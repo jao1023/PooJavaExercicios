@@ -1,4 +1,4 @@
-package aprendendo.projetoSistemaDeRH.financial;
+package aprendendo.poo.projetoSistemaDeRH.financial;
 
 public class Transaction {
     private double value;

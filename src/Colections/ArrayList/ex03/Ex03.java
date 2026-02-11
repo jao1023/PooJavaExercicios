@@ -1,26 +1,20 @@
 package Colections.ArrayList.ex03;
 
+import Colections.ArrayList.Test01.User;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Ex03 {
     static void main() {
-        ArrayList<Integer> numbers = new ArrayList<Integer>();
-        ArrayList<Integer> filtred = new ArrayList<Integer>();
+        List<User> users = new ArrayList<User>();
 
-        numbers.add(3);
-        numbers.add(8);
-        numbers.add(1);
-        numbers.add(15);
-        numbers.add(6);
-        numbers.add(22);
-        numbers.add(4);
-        numbers.add(17);
+        User u1 = new User("João",23);
 
-        for(int i = 0; i < numbers.size(); i++){
-            if(numbers.get(i) > 10){
-                filtred.add(numbers.get(i));
-            }
+        users.add(u1);
+
+        for (int i = 0; i < users.size();i++) {
+            System.out.println("NOME: " + users.get(i).name + " IDADE: " + users.get(i).age);
         }
-        System.out.println(filtred);
     }
 }

@@ -1,7 +1,7 @@
-package aprendendo.projetoSistemaDeRH.operations;
+package aprendendo.poo.projetoSistemaDeRH.operations;
 
-import aprendendo.projetoSistemaDeRH.financial.BankAccount;
-import aprendendo.projetoSistemaDeRH.hr.Employee;
+import aprendendo.poo.projetoSistemaDeRH.financial.BankAccount;
+import aprendendo.poo.projetoSistemaDeRH.hr.Employee;
 
 public class Project implements Allocable {
     private String projectName;
