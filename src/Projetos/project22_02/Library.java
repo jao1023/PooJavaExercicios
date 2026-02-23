@@ -1,6 +1,5 @@
 package Projetos.project22_02;
 
-import java.sql.SQLOutput;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
@@ -12,6 +11,7 @@ public class Library {
 
         int userId = 1;
         int bookISBN = 1;
+        int ISBN;
         Scanner sc = new Scanner(System.in);
         do {
             System.out.println("LIBRARY SYSTEM, CHOOSE ONE OPTION");
@@ -29,6 +29,7 @@ public class Library {
             int choice = sc.nextInt();
 
             switch(choice) {
+                //Case for register one user in the system
                 case 1:
                     sc.nextLine();
                     System.out.println("Enter your name");
@@ -44,6 +45,7 @@ public class Library {
                     userId++;
 
                     break;
+                    //Case for register one book in the system
                 case 2:
                     sc.nextLine();
                     System.out.println("Enter book TITLE");
@@ -60,21 +62,22 @@ public class Library {
                     books.add(book);
                     bookISBN++;
                     break;
+                    //Case for delete one book, you can delete any book by the ISBN of the book
                 case 3:
-                    String title = null;
-                    int ISBN = 0;
-                    System.out.println("ENTER THE BOOK ISBN");
-
+                    ISBN = 0;
+                    if(books.size() == 0) {
+                        System.out.println("NO BOOKS REGISTERED");
+                        break;
+                    }
+                    for(Book b : books) {
+                        System.out.println("[BOOK ISBN:" + b.getISBN() + "| BOOK TITLE:" + b.getTitle() + "| BOOK AUTHOR:" + b.getAuthor() + "| BOOK PUBLISHER:"  + b.getPublisher() +  "| BOOK PUBLISHER:" + b.getPublisher() + "| IS AVALIABLE:"+ b.getAvailable() + "]");
+                    }
                             System.out.println("Enter book ISBN");
                             ISBN = sc.nextInt();
 
-
-                    if(bookISBN == 1) {
-                        System.out.println("NO BOOKS REGISTERED");
-                    }
                     for(Book b : books) {
                         if(b.getISBN() == ISBN){
-                            System.out.println("[BOOK ISBN:" + b.getISBN() + "| BOOK TITLE:" + b.getTitle() + "| BOOK AUTHOR:" + b.getAuthor() + "| BOOK AUTHOR:" + b.getAuthor() + "| BOOK PUBLISHER:" + b.getPublisher() + "| IS AVALIABLE:" + b.getAvailable() + "]");
+                            System.out.println("[BOOK ISBN:" + b.getISBN() + "| BOOK TITLE:" + b.getTitle() + "| BOOK AUTHOR:" + b.getAuthor() + "| BOOK PUBLISHER:"  + b.getPublisher() +  "| BOOK PUBLISHER:" + b.getPublisher() + "| IS AVALIABLE:" + b.getAvailable() + "]");
                             System.out.println("1.DELETE BOOK");
                             System.out.println("2.CANCEL");
                             choice = sc.nextInt();
@@ -88,23 +91,82 @@ public class Library {
 
                     };
                     break;
+                    //Case for borrow one book
                 case 4:
+                    ISBN = 0;
+                    if(books.size() == 0) {
+                        System.out.println("NO BOOKS REGISTERED");
+                        break;
+                    }
+                    for(Book b : books) {
+                        System.out.println("[BOOK ISBN:" + b.getISBN() + "| BOOK TITLE:" + b.getTitle() + "| BOOK AUTHOR:" + b.getAuthor() + "| BOOK PUBLISHER:"  + b.getPublisher() + "| BOOK PUBLISHER:" + b.getPublisher() + "| IS AVALIABLE:"+ b.getAvailable() + "]");
+                    }
+                    System.out.println("Enter book ISBN");
+                    ISBN = sc.nextInt();
+
+                    for(Book b : books) {
+                        if(b.getISBN() == ISBN){
+                            b.setAvailable(false);
+                        }
+                    }
+
                     break;
+                    //Case for return the book
                 case 5:
+                    ISBN = 0;
+                    if(books.size() == 0) {
+                        System.out.println("NO BOOKS REGISTERED");
+                        break;
+                    }
+                    for(Book b : books) {
+                        if(b.getAvailable() == false){
+                        System.out.println("[BOOK ISBN:" + b.getISBN() + "| BOOK TITLE:" + b.getTitle() + "| BOOK AUTHOR:" + b.getAuthor() + "| BOOK PUBLISHER:"  + b.getPublisher() + "| BOOK PUBLISHER:" + b.getPublisher() + "| IS AVALIABLE:"+ b.getAvailable() + "]");
+                        }
+                    }
+                    System.out.println("Enter book ISBN");
+                    ISBN = sc.nextInt();
+
+
+                    for(Book b : books) {
+                        if(b.getISBN() == ISBN && b.getAvailable() == false) {
+                            b.setAvailable(true);
+                        }
+                    }
                     break;
                 case 6:
+                    sc.nextLine();
+                    System.out.println("Enter book title");
+                    String bookTitleS = sc.nextLine();
+
+                    for(Book b : books) {
+                        if(b.getTitle().contains(bookTitleS) ) {
+                            System.out.println("[BOOK ISBN:" + b.getISBN() + "| BOOK TITLE:" + b.getTitle() + "| BOOK AUTHOR:" + b.getAuthor() + "| BOOK PUBLISHER:"  + b.getPublisher() + "| BOOK PUBLISHER:" + b.getPublisher() + "| IS AVALIABLE:"+ b.getAvailable() + "]");
+                        }
+                    }
                     break;
+                    //Case for search users by name
                 case 7:
+                    sc.nextLine();
+                    System.out.println("Enter book title");
+                    String Username = sc.nextLine();
+
+                    for(User u : users) {
+                        if(u.getName().contains(Username) ) {
+                            System.out.println("[USER ID:" + u.getId() + "| USER NAME:" + u.getName() + "| EMAIL:" + u.getEmail() + "]");
+                        }
+                    }
                     break;
+                    //Case for see all registred books
                 case 8:
                     if(bookISBN == 1){
                         System.out.println("No books Registred");
                         break;
                     }
                     for(Book b : books) {
-                        System.out.println("[BOOK ISBN:" + b.getISBN() + "| BOOK TITLE:" + b.getTitle() + "| BOOK AUTHOR:" + b.getAuthor() + "| BOOK AUTHOR:"  + b.getAuthor() + "| BOOK PUBLISHER:" + b.getPublisher() + "| IS AVALIABLE:"+ b.getAvailable() + "]");
+                        System.out.println("[BOOK ISBN:" + b.getISBN() + "| BOOK TITLE:" + b.getTitle() + "| BOOK AUTHOR:" + b.getAuthor() + "| BOOK PUBLISHER:"  + b.getPublisher() + "| BOOK PUBLISHER:" + b.getPublisher() + "| IS AVALIABLE:"+ b.getAvailable() + "]");
                     }
                     break;
+                    //Case for see all registred users
                 case 9:
                     if(userId == 1){
                         System.out.println("No Users Registred");
