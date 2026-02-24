@@ -8,7 +8,7 @@ public class minimalCaracters extends Exception {
 
     public static void checkPasswordCaracters(String password) throws minimalCaracters{
         if(password.length() < 6){
-            System.out.println("Password too short Minimum 6 Caracters");
+            throw new minimalCaracters("Password too short Minimum 6 Caracters");
         }
     }
 }

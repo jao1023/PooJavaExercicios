@@ -45,4 +45,16 @@ public class Book {
         return ISBN;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Book)) return false;
+        Book other = (Book) obj;
+        return this.ISBN == other.ISBN;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(this.ISBN);
+    }
+
 }

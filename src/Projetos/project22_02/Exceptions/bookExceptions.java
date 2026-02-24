@@ -10,14 +10,31 @@ public class bookExceptions extends Exception {
     }
 
 
-    public static void bookNotFound(Set<Book> books, int isbn) {
-        int notFound;
+    public static void bookNotFound(Set<Book> books, int isbn) throws bookExceptions {
+        int  notFound = 0;
         for (Book b : books) {
             if (b.getISBN() != isbn) {
                 notFound = 1;
             }
+        }
 
-            System.out.println("Book not found");
+        if(notFound == 1){
+            throw new bookExceptions("Book not found");
+        }
+
+    }
+
+    public static void verifyAvailable(Set<Book> books,int isbn) throws bookExceptions {
+        int notAvailable = 0;
+        for(Book b : books){
+            if(b.getISBN() == isbn){
+               if(b.getAvailable() == false){
+                   notAvailable = 1;
+               }
+            }
+        }
+        if(notAvailable == 1){
+            throw new bookExceptions("Book isn't available");
         }
     }
 }

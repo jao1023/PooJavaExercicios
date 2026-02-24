@@ -13,7 +13,7 @@ public class emptyField extends Exception {
 
     public static void checkEmptyBookField(String title,String author,String publisher,String description) throws emptyField{
             if(title.isEmpty() || author.isEmpty() || publisher.isEmpty() || description.isEmpty()){
-                System.out.println("You need to fill all fields");
+                throw new emptyField("You need to fill all fields");
             }
     }
 
