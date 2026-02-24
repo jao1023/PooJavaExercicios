@@ -1,8 +1,15 @@
 package Projetos.project22_02;
 
+import Projetos.project22_02.Exceptions.emptyField;
+import Projetos.project22_02.Exceptions.minimalCaracters;
+
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
+
+import static Projetos.project22_02.Exceptions.emptyField.checkEmptyBookField;
+import static Projetos.project22_02.Exceptions.emptyField.checkEmptyUserField;
+import static Projetos.project22_02.Exceptions.minimalCaracters.checkPasswordCaracters;
 
 public class Library {
     static void main() {
@@ -12,6 +19,9 @@ public class Library {
         int userId = 1;
         int bookISBN = 1;
         int ISBN;
+
+        int booksRegistred = 0;
+        int usersRegistred = 0;
         Scanner sc = new Scanner(System.in);
         do {
             System.out.println("LIBRARY SYSTEM, CHOOSE ONE OPTION");
@@ -31,41 +41,54 @@ public class Library {
             switch(choice) {
                 //Case for register one user in the system
                 case 1:
-                    sc.nextLine();
-                    System.out.println("Enter your name");
-                    String userName = sc.nextLine();
-                    System.out.println("Enter your email");
-                    String userEmail = sc.nextLine();
-                    System.out.println("Enter your password");
-                    String userPassword = sc.nextLine();
+                    try {
+                        sc.nextLine();
+                        System.out.println("Enter your name");
+                        String userName = sc.nextLine();
+                        System.out.println("Enter your email");
+                        String userEmail = sc.nextLine();
+                        System.out.println("Enter your password (MINIMUM 6 CHARACTERS)");
+                        String userPassword = sc.nextLine();
 
-                    User user = new User(userId,userName,userEmail,userPassword);
+                        checkEmptyUserField(userName, userEmail, userPassword);
+                        checkPasswordCaracters(userPassword);
 
-                    users.add(user);
-                    userId++;
-
+                        User user = new User(userId, userName, userEmail, userPassword);
+                        users.add(user);
+                        userId++;
+                        usersRegistred++;
+                    }catch (emptyField | minimalCaracters e){
+                        System.out.println(e.getMessage());
+                    }
                     break;
                     //Case for register one book in the system
                 case 2:
-                    sc.nextLine();
-                    System.out.println("Enter book TITLE");
-                    String bookTitle = sc.nextLine();
-                    System.out.println("Enter book AUTHOR");
-                    String bookAuthor = sc.nextLine();
-                    System.out.println("Enter book PUBLISHER");
-                    String bookPublisher = sc.nextLine();
-                    System.out.println("Enter book DESCRIPTION");
-                    String bookDescription = sc.nextLine();
+                    try {
+                        sc.nextLine();
+                        System.out.println("Enter book TITLE");
+                        String bookTitle = sc.nextLine();
+                        System.out.println("Enter book AUTHOR");
+                        String bookAuthor = sc.nextLine();
+                        System.out.println("Enter book PUBLISHER");
+                        String bookPublisher = sc.nextLine();
+                        System.out.println("Enter book DESCRIPTION");
+                        String bookDescription = sc.nextLine();
 
-                    boolean isAvailable = true;
-                    Book book = new Book(bookISBN,bookTitle,bookAuthor,bookPublisher,isAvailable,bookDescription);
-                    books.add(book);
-                    bookISBN++;
+                        checkEmptyBookField(bookTitle,bookAuthor,bookPublisher,bookDescription);
+
+                        boolean isAvailable = true;
+                        Book book = new Book(bookISBN, bookTitle, bookAuthor, bookPublisher, isAvailable, bookDescription);
+                        books.add(book);
+                        bookISBN++;
+                        booksRegistred++;
+                    }catch (emptyField e){
+                        System.out.println(e.getMessage());
+                    }
                     break;
                     //Case for delete one book, you can delete any book by the ISBN of the book
                 case 3:
                     ISBN = 0;
-                    if(books.size() == 0) {
+                    if(booksRegistred == 0) {
                         System.out.println("NO BOOKS REGISTERED");
                         break;
                     }
@@ -94,7 +117,7 @@ public class Library {
                     //Case for borrow one book
                 case 4:
                     ISBN = 0;
-                    if(books.size() == 0) {
+                    if(booksRegistred == 0) {
                         System.out.println("NO BOOKS REGISTERED");
                         break;
                     }
@@ -114,7 +137,7 @@ public class Library {
                     //Case for return the book
                 case 5:
                     ISBN = 0;
-                    if(books.size() == 0) {
+                    if(booksRegistred == 0) {
                         System.out.println("NO BOOKS REGISTERED");
                         break;
                     }
@@ -190,4 +213,5 @@ public class Library {
         }while(true);
 
     }
+
 }
