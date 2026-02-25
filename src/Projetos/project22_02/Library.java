@@ -2,7 +2,7 @@ package Projetos.project22_02;
 
 import Projetos.project22_02.Exceptions.bookExceptions;
 import Projetos.project22_02.Exceptions.emptyField;
-import Projetos.project22_02.Exceptions.minimalCaracters;
+import Projetos.project22_02.Exceptions.minimalCharacters;
 
 import java.util.HashSet;
 import java.util.InputMismatchException;
@@ -10,12 +10,13 @@ import java.util.Scanner;
 import java.util.Set;
 
 import static Projetos.project22_02.Exceptions.bookExceptions.*;
+import static Projetos.project22_02.Exceptions.bookExceptions.verifyAvailableBorrow;
 import static Projetos.project22_02.Exceptions.emptyField.checkEmptyBookField;
 import static Projetos.project22_02.Exceptions.emptyField.checkEmptyUserField;
-import static Projetos.project22_02.Exceptions.minimalCaracters.checkPasswordCaracters;
+import static Projetos.project22_02.Exceptions.minimalCharacters.checkPasswordCaracters;
 
 public class Library {
-    static void main() {
+   public static void main(String[] args) {
         Set<User> users = new HashSet<>();
         Set<Book> books = new HashSet<>();
 
@@ -25,6 +26,9 @@ public class Library {
 
         int booksRegistred = 0;
         int usersRegistred = 0;
+        int booksAvailable = 0;
+        int booksBorrowed = 0;
+
         Scanner sc = new Scanner(System.in);
         //Main menu for access the system
         do {
@@ -67,7 +71,7 @@ public class Library {
                         userId++;
                         usersRegistred++;
                         //
-                    }catch (emptyField | minimalCaracters e){
+                    }catch (emptyField | minimalCharacters e){
                         System.out.println(e.getMessage());
                     }
                     break;
@@ -124,7 +128,7 @@ public class Library {
                     }catch (InputMismatchException e){
                         throw new RuntimeException("Invalid input, please enter an integer");
                     }
-                    //For to exclude the book with option to cancel
+
                     for(Book b : books) {
                         if(b.getISBN() == ISBN){
                             System.out.println("[BOOK ISBN:" + b.getISBN() + "| BOOK TITLE:" + b.getTitle() + "| BOOK AUTHOR:" + b.getAuthor() + "| BOOK PUBLISHER:"  + b.getPublisher() +  "| BOOK PUBLISHER:" + b.getPublisher() + "| IS AVALIABLE:" + b.getAvailable() + "]");
@@ -150,14 +154,16 @@ public class Library {
                         break;
                     }
                     for(Book b : books) {
-                        System.out.println("[BOOK ISBN:" + b.getISBN() + "| BOOK TITLE:" + b.getTitle() + "| BOOK AUTHOR:" + b.getAuthor() + "| BOOK PUBLISHER:"  + b.getPublisher() + "| BOOK PUBLISHER:" + b.getPublisher() + "| IS AVALIABLE:"+ b.getAvailable() + "]");
+                        if(b.getAvailable() == true) {
+                            System.out.println("[BOOK ISBN:" + b.getISBN() + "| BOOK TITLE:" + b.getTitle() + "| BOOK AUTHOR:" + b.getAuthor() + "| BOOK PUBLISHER:" + b.getPublisher() + "| BOOK PUBLISHER:" + b.getPublisher() + "| IS AVALIABLE:" + b.getAvailable() + "]");
+                        }
                     }
                     try {
                         System.out.println("Enter book ISBN");
                         ISBN = sc.nextInt();
 
                         bookNotFound(books,ISBN);
-                        verifyAvailable(books,ISBN);
+                        verifyAvailableBorrow(books,ISBN);
                         //For each for access the requested book and set the available equals false
                         for (Book b : books) {
                             if (b.getISBN() == ISBN) {
@@ -190,6 +196,7 @@ public class Library {
                         ISBN = sc.nextInt();
 
                         bookNotFound(books,ISBN);
+                        verifyAvailableReturn(books,ISBN);
                         //For each for access the requested book and set the available equals false
                         for (Book b : books) {
                             if (b.getISBN() == ISBN) {
@@ -203,34 +210,51 @@ public class Library {
                     }
                     break;
                 case 6:
+                    int founded = 0;
+
+                    if(booksRegistred == 0){
+                        System.out.println("No books Registred");
+                        break;
+                    }
+
+                    //Enter the book title
                         sc.nextLine();
                         System.out.println("Enter book title");
                         String bookTitleS = sc.nextLine();
-
-
-
+                        //For each to get the book if contains any book with the title the user have put for search
                         for(Book b : books) {
                             if(b.getTitle().contains(bookTitleS) ) {
-                                System.out.println("[BOOK ISBN:" + b.getISBN() + "| BOOK TITLE:" + b.getTitle() + "| BOOK AUTHOR:" + b.getAuthor() + "| BOOK PUBLISHER:"  + b.getPublisher() + "| BOOK PUBLISHER:" + b.getPublisher() + "| IS AVALIABLE:"+ b.getAvailable() + "]");
+                                System.out.println("[BOOK ISBN:" + b.getISBN() + "| BOOK TITLE:" + b.getTitle() + "| BOOK AUTHOR:" + b.getAuthor() + "| BOOK PUBLISHER:" + b.getPublisher() + "| IS AVALIABLE:"+ b.getAvailable() + "]");
+                                founded++;
                             }
+                        }
+                        if(founded == 0) {
+                            System.out.println("Book not founded");
                         }
 
                     break;
                     //Case for search users by name
                 case 7:
+                    //Verify if the system have any user registered
+                    if(usersRegistred == 0){
+                        System.out.println("No users registered");
+                        break;
+                    }
+
                     sc.nextLine();
                     System.out.println("Enter user name");
                     String Username = sc.nextLine();
-
+                    //For to get users if contains the same user informed in the input
                     for(User u : users) {
                         if(u.getName().contains(Username) ) {
                             System.out.println("[USER ID:" + u.getId() + "| USER NAME:" + u.getName() + "| EMAIL:" + u.getEmail() + "]");
                         }
                     }
                     break;
-                    //Case for see all registred books
+                    //Case for see all registered books
                 case 8:
-                    if(bookISBN == 1){
+                    //Verify if the system have any book registered
+                    if(booksRegistred == 0){
                         System.out.println("No books Registred");
                         break;
                     }
@@ -240,10 +264,12 @@ public class Library {
                     break;
                     //Case for see all registred users
                 case 9:
-                    if(userId == 1){
+                    //Verify if the system have any user registered
+                    if(usersRegistred == 0){
                         System.out.println("No Users Registred");
                         break;
                     }
+                    //For to display all the users
                     for(User u : users) {
                         System.out.println("[USER ID:" + u.getId() + "| USER NAME:" + u.getName() + "| EMAIL:" + u.getEmail() + "]");
                     }

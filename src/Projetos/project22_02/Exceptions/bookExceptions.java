@@ -9,7 +9,7 @@ public class bookExceptions extends Exception {
         super(message);
     }
 
-
+    //Exception for verify it the book exist
     public static void bookNotFound(Set<Book> books, int isbn) throws bookExceptions {
         int  notFound = 0;
         for (Book b : books) {
@@ -23,8 +23,8 @@ public class bookExceptions extends Exception {
         }
 
     }
-
-    public static void verifyAvailable(Set<Book> books,int isbn) throws bookExceptions {
+    //Exception for verify if the book that user is trying to borrow is available for borrow
+    public static void verifyAvailableBorrow(Set<Book> books,int isbn) throws bookExceptions {
         int notAvailable = 0;
         for(Book b : books){
             if(b.getISBN() == isbn){
@@ -35,6 +35,20 @@ public class bookExceptions extends Exception {
         }
         if(notAvailable == 1){
             throw new bookExceptions("Book isn't available");
+        }
+    }
+    //Exeception for verify if the book that user is trying to return is borrowed
+    public static void verifyAvailableReturn(Set<Book> books,int isbn) throws bookExceptions {
+        int Available = 0;
+        for(Book b : books){
+            if(b.getISBN() == isbn){
+                if(b.getAvailable() == true){
+                    Available = 1;
+                }
+            }
+        }
+        if(Available == 1){
+            throw new bookExceptions("The book is available");
         }
     }
 }
